@@ -1,12 +1,13 @@
+import { NavLink } from "react-router-dom";
+
 const Nav = () => {
   const link = (
     <>
-      <li>
-        <a>Item 1</a>
-      </li>
-      <li>
-        <a>Item 3</a>
-      </li>
+      <NavLink to="/">HOME</NavLink>
+      <NavLink to="/contact">CONTACT US</NavLink>
+      <NavLink to="/dashboard">DASHBOARD</NavLink>
+      <NavLink to="/menu">OUR MENU</NavLink>
+      <NavLink to="/shop">OUR SHOP</NavLink>
     </>
   );
   return (
@@ -32,7 +33,7 @@ const Nav = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100  rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               {link}
             </ul>
@@ -40,7 +41,7 @@ const Nav = () => {
           <a className="btn btn-ghost text-xl">daisyUI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{link}</ul>
+          <ul className="menu menu-horizontal gap-x-3 px-1">{link}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Button</a>

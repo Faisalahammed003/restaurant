@@ -5,6 +5,7 @@ import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
@@ -28,6 +29,7 @@ const Testimonials = () => {
                 value={review.rating}
                 readOnly
               />
+              <FaQuoteLeft className="my-5 size-12"></FaQuoteLeft>
               <p>{review.details}</p>
               <h3 className="text-2xl text-orange-400 ">{review.name}</h3>
             </div>
