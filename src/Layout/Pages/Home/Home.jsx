@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Banner from "./Banner";
 import BistroBoss from "./BistroBoos";
 import CallUs from "./CallUs";
@@ -10,7 +11,10 @@ import Testimonials from "./Testimonials";
 const Home = () => {
   return (
     <>
-      {/*-------------------HOME-SECTION------------------------- */}
+      <Helmet>
+        <title>Bistro | Home</title>
+      </Helmet>
+      ;{/*-------------------HOME-SECTION------------------------- */}
       <Banner></Banner>
       <div className="container mx-auto">
         <Category></Category>
