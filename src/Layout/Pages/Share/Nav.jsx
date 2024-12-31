@@ -7,7 +7,7 @@ const Nav = () => {
       <NavLink to="/contact">CONTACT US</NavLink>
       <NavLink to="/dashboard">DASHBOARD</NavLink>
       <NavLink to="/menu">OUR MENU</NavLink>
-      <NavLink to="/shop">OUR SHOP</NavLink>
+      <NavLink to="/order">ORDER FOOD</NavLink>
     </>
   );
   return (

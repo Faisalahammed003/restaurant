@@ -14,11 +14,13 @@ const Home = () => {
       <Helmet>
         <title>Bistro | Home</title>
       </Helmet>
-      ;{/*-------------------HOME-SECTION------------------------- */}
+      {/*-------------------HOME-SECTION------------------------- */}
       <Banner></Banner>
       <div className="container mx-auto">
         <Category></Category>
-        <BistroBoss></BistroBoss>
+      </div>
+      <BistroBoss></BistroBoss>
+      <div className="container mx-auto">
         <PopularMenu></PopularMenu>
         <CallUs></CallUs>
         <Chef></Chef>
