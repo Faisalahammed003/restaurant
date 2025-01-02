@@ -1,31 +1,50 @@
+import { useEffect, useRef, useState } from "react";
+import coverImg from "../../../assets/others/authentication2.png";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { Link } from "react-router-dom";
 const Login = () => {
+  const captchaRef = useRef(null);
+  const [disiabled, setDisabled] = useState(true);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
   const handleLogin = (e) => {
     e.preventDefault();
-    const from = event.target;
+    const from = e.target;
     const email = from.email.value;
     const password = from.password.value;
     console.log(email, password);
   };
+
+  const handleCaptcha = () => {
+    const captchaValue = captchaRef.current.value;
+    console.log(captchaValue);
+
+    if (validateCaptcha(captchaValue)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+    <div className="hero bg-[url('https://i.ibb.co.com/1KtTyqx/authentication.png')] min-h-screen">
+      <div className="hero-content flex-col md:flex-row-reverse">
+        <div className="text-center md:w-1/2 lg:text-left">
+          <img src={coverImg} alt="" />
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handleLogin} className="card-body">
+        <div className="card bg-[url('https://i.ibb.co.com/1KtTyqx/authentication.png')] md:w-1/2 max-w-sm shadow-2xl">
+          <form className="card-body" onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
-                name="email"
                 type="email"
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -36,8 +55,8 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                name="password"
                 type="password"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
@@ -48,9 +67,43 @@ const Login = () => {
                 </a>
               </label>
             </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+            <div className="form-control">
+              <div className="flex justify-between items-center">
+                <label className="label ">
+                  <LoadCanvasTemplate />
+                </label>
+                <button
+                  onClick={handleCaptcha}
+                  className="btn btn-outline btn-xs mb-7"
+                >
+                  Validate
+                </button>
+              </div>
+              <input
+                ref={captchaRef}
+                type="text"
+                name="captcha"
+                placeholder="type the text you see above"
+                className="input input-bordered"
+                required
+              />
             </div>
+            <div className="form-control mt-6">
+              <input
+                disabled={disiabled}
+                className="btn text-white bg-[#D1A054]"
+                type="submit"
+                value="Login"
+              />
+            </div>
+            <p className="text-[#D1A054] text-center font-semibold">
+              <small>
+                New Here?{" "}
+                <Link className="font-bold" to="/signUp">
+                  Create a New Account
+                </Link>
+              </small>
+            </p>
           </form>
         </div>
       </div>
