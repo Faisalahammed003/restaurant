@@ -2,10 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 const Nav = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  const [cart] = useCart();
 
   // const handleLogOut = () => {
   //   logOut()
@@ -26,9 +27,9 @@ const Nav = () => {
       <NavLink to="/secret">SECRET</NavLink>
       <NavLink to="/">
         <div className="flex relative">
-          <FaShoppingCart className="mr-2 size-4 "></FaShoppingCart>
-          <div className="badge badge-secondary absolute -top-3 -right-9">
-            +99
+          <FaShoppingCart className="mr-2 size-4   "></FaShoppingCart>
+          <div className="badge badge-secondary bg-black absolute -top-3 -right-5">
+            {cart.length}
           </div>
         </div>
       </NavLink>

@@ -12,6 +12,8 @@ import AuthProviders from "./Providers/AuthProviders";
 import SIngUp from "./Layout/Pages/LoginAndRegister/SIngUp";
 import Secret from "./Layout/Pages/Share/Secret";
 import PrivateRoute from "./Providers/PrivateRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,11 +53,13 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProviders>
-      <HelmetProvider>
-        <div className="max-w-screen-xl mx-auto">
-          <RouterProvider router={router} />
-        </div>
-      </HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <div className="max-w-screen-xl mx-auto">
+            <RouterProvider router={router} />
+          </div>
+        </HelmetProvider>
+      </QueryClientProvider>
     </AuthProviders>
   </StrictMode>
 );
