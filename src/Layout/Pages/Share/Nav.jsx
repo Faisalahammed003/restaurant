@@ -1,6 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import { useContext } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+
+  // const handleLogOut = () => {
+  //   logOut()
+  //     .then(() => {
+  //       console.log("LogOut");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   const link = (
     <>
       <NavLink to="/">HOME</NavLink>
@@ -8,6 +23,15 @@ const Nav = () => {
       <NavLink to="/dashboard">DASHBOARD</NavLink>
       <NavLink to="/menu">OUR MENU</NavLink>
       <NavLink to="/order/salad">ORDER FOOD</NavLink>
+      <NavLink to="/secret">SECRET</NavLink>
+      <NavLink to="/">
+        <div className="flex relative">
+          <FaShoppingCart className="mr-2 size-4 "></FaShoppingCart>
+          <div className="badge badge-secondary absolute -top-3 -right-9">
+            +99
+          </div>
+        </div>
+      </NavLink>
     </>
   );
   return (
@@ -48,7 +72,17 @@ const Nav = () => {
           <ul className="menu menu-horizontal gap-x-3 px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login">Login</Link>
+          {user ? (
+            <>
+              <button onClick={logOut} className="">
+                LogOut
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+            </>
+          )}
         </div>
       </div>
     </>

@@ -9,6 +9,9 @@ import { HelmetProvider } from "react-helmet-async";
 import Order from "./Layout/Pages/Order/Order";
 import Login from "./Layout/Pages/LoginAndRegister/Login";
 import AuthProviders from "./Providers/AuthProviders";
+import SIngUp from "./Layout/Pages/LoginAndRegister/SIngUp";
+import Secret from "./Layout/Pages/Share/Secret";
+import PrivateRoute from "./Providers/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +32,18 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "singUp",
+        element: <SIngUp></SIngUp>,
+      },
+      {
+        path: "secret",
+        element: (
+          <PrivateRoute>
+            <Secret></Secret>
+          </PrivateRoute>
+        ),
       },
     ],
   },
