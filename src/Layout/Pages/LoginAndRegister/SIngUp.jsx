@@ -5,8 +5,11 @@ import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import SocialLogin from "../Share/SocialLogin";
 
 const SIngUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -23,16 +26,24 @@ const SIngUp = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         updateUserProfile(data.name, data.photoUrl).then(() => {
-          console.log("user profile info updated");
-          reset();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User Created Successful",
-            showConfirmButton: false,
-            timer: 1500,
+          // create user entry in the database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic.post("users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Created Successful",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
           });
-          navigate("/");
         });
       })
       .catch((error) => {
@@ -121,6 +132,7 @@ const SIngUp = () => {
                 </small>
               </p>
             </form>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

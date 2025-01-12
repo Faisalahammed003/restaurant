@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "../Share/SocialLogin";
 const Login = () => {
   const [disiabled, setDisabled] = useState(true);
   const navigate = useNavigate();
@@ -128,6 +129,7 @@ const Login = () => {
                 </small>
               </p>
             </form>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

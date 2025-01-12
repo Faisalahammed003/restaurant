@@ -25,11 +25,11 @@ const Nav = () => {
       <NavLink to="/menu">OUR MENU</NavLink>
       <NavLink to="/order/salad">ORDER FOOD</NavLink>
       <NavLink to="/secret">SECRET</NavLink>
-      <NavLink to="/">
+      <NavLink to="/dashboard">
         <div className="flex relative">
           <FaShoppingCart className="mr-2 size-4   "></FaShoppingCart>
-          <div className="badge badge-secondary bg-black absolute -top-3 -right-5">
-            {cart.length}
+          <div className="badge badge-secondary border-2 border-white bg-red-800 absolute -top-3 -right-5">
+            <span>{cart.length}</span>
           </div>
         </div>
       </NavLink>

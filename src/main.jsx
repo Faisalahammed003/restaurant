@@ -13,6 +13,9 @@ import SIngUp from "./Layout/Pages/LoginAndRegister/SIngUp";
 import Secret from "./Layout/Pages/Share/Secret";
 import PrivateRoute from "./Providers/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Dashboard from "./Layout/Dashboard";
+import Cart from "./Layout/Pages/Dashboard/Cart";
+import AllUsers from "./Admin/AllUsers";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -46,6 +49,26 @@ const router = createBrowserRouter([
             <Secret></Secret>
           </PrivateRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "Cart",
+        element: <Cart></Cart>,
+      },
+
+      // -----------ADMIN ROUTES--------------------
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },
